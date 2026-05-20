@@ -1,9 +1,10 @@
 from django.db import models
+import uuid
 
 
 # Create your models here.
 class Application(models.Model):
-    tracking_number = models.CharField(max_length=20, unique=True)
+    tracking_number = models.CharField(max_length=20, unique=True, blank=True)
     applicant_name = models.CharField(max_length=50)
     applicant_email = models.EmailField()
     company_name = models.CharField(max_length=50)
@@ -31,3 +32,18 @@ class Application(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     submitted_at = models.DateTimeField(null=True, blank=True)
     reviewed_at = models.DateTimeField(null=True, blank=True)
+
+    @staticmethod
+    def generate_tracking_no():
+        return f"APP-{uuid.uuid4().hex[:8].upper()}"
+    
+    def save(self, *args, **kwargs):
+        if not self.tracking_number:
+            self.tracking_number = self.generate_tracking_no()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.tracking_number} - {self.applicant_name}"
+    
+    class Meta:
+        ordering = ['-created_at']
