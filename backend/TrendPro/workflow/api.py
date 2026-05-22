@@ -86,7 +86,7 @@ def record_decision(request: HttpRequest, app_id: int, payload: ReviewerDecision
         )
     
     app.status = payload.decision
-    app.reviewer_comment = payload.reviewer_comment
+    app.reviewer_comment = payload.reviewer_comment or ""
     app.reviewed_at = timezone.now()
     app.save()
     return app

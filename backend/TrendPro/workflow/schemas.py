@@ -1,7 +1,7 @@
 from ninja import Schema
-from pydantic import EmailStr
+from pydantic import EmailStr, Validator
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Literal
 
 class ApplicationCreateSchema(Schema):
     applicant_name: str
@@ -18,9 +18,14 @@ class ApplicationUpdateSchema(Schema):
     description: Optional[str] = None
 
 class ReviewerDecisionSchema(Schema):
-    decision:str
+    decision: Literal["approved", "rejected", "need_more_info"]
     reviewer_comment: Optional[str] = None
 
+    @validator("reviewer_comment", always=True)
+    def comment_required(cls, v, values):
+        if values.get("decision") in ("rejected", "need_more_info") and not (v and v.strip()):
+            raise ValueError("A comment is required for Rejected or Need More Information decisions.")
+        return v
 
 class ApplicationOut(Schema):
     id: int
