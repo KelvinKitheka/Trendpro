@@ -52,6 +52,7 @@ export default function ApplicationList() {
                             <tr
                                 key={app.id}
                                 onClick={() => navigate(`/applications/${app.id}`)}
+                                className="cursor-pointer hover:bg-gray-50"
                             >
                                 <td className={TH}>{app.tracking_number}</td>
                                 <td className={TH}>{app.applicant_name}</td>
