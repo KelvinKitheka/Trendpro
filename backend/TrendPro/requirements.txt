@@ -1,0 +1,5 @@
+django
+django-ninja
+django-cors-headers
+python-decouple
+email-validator>=2.0.0
