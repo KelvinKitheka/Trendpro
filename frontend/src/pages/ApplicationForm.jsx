@@ -5,7 +5,7 @@ import { api } from "../api/applications";
 const TYPES = ["recordation", "renewal", "change_of_ownership", "change_of_name", "discontinuation"]
 const EMPTY = {applicant_name: "", applicant_email: "", company_email: "", application_type: "", description: ""}
 
-export default function ApplicationDetail() {
+export default function ApplicationForm() {
     const { id } = useParams();
     const navigate = useNavigate();
     const isEdit = Boolean(id)
@@ -60,8 +60,8 @@ export default function ApplicationDetail() {
             <label>Company Name
                 <input name="company_name" value={form.company_name} onChange={handleChange} className={inputClass}/>
             </label>
-            <label>Applicant Type
-                <input name="applicant_type" value={form.applicant_type} onChange={handleChange} className={inputClass}/>
+            <label>Application Type
+                <input name="application_type" value={form.application_type} onChange={handleChange} className={inputClass}/>
             </label>
             <label>Description
                 <textarea name="description" value={form.description} onChange={handleChange} rows={4} className={inputClass}/>
