@@ -45,8 +45,8 @@ const ApplicationDetail = () => {
             app.reviewer_comment && ["Reviewer Comment", app.reviewer_comment],
             ].filter(Boolean).map(([label, value]) => (
                 <tr key={label}>
-                    <td>{label}</td>
-                    <td>{value}</td>
+                    <td className="border px-3 py-2 text-gray-500 font-medium w-36">{label}</td>
+                    <td className="border px-3 py-2">{value}</td>
                 </tr>
             ))}
         </tbody>
