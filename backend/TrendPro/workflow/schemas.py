@@ -1,5 +1,5 @@
 from ninja import Schema
-from pydantic import EmailStr, Validator
+from pydantic import EmailStr, validator
 from datetime import datetime
 from typing import Optional, Literal
 

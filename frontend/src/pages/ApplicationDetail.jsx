@@ -14,6 +14,8 @@ const ApplicationDetail = () => {
         api.get(id).then(setApp).catch(e => setError(e.message))
     }, [id]);
 
+    
+
     const action = async (fn) => {
     try { setApp(await fn()) }
     catch (e) { setError(e.message) }
@@ -60,6 +62,12 @@ const ApplicationDetail = () => {
     {app.status === "under_review" &&
         <button onClick={() => setShowModal(true)} className="bg-green-600 text-white px-3 py-1.5 rounded text-sm">Record Decision</button>}
     </div>
+
+    {(app.status === "approved" || app.status === "rejected") && (
+    <p className="text-sm text-gray-500 mt-2">
+        This application is <span className="font-medium">{app.status}</span> and can no longer be edited.
+    </p>
+    )}
 
     {showModal && (
         <ReviewerDecisionModal
