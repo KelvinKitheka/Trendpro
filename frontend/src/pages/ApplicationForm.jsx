@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../api/applications";
 
 const TYPES = ["recordation", "renewal", "change_of_ownership", "change_of_name", "discontinuation"]
-const EMPTY = {applicant_name: "", applicant_email: "", company_email: "", application_type: "", description: ""}
+const EMPTY = {applicant_name: "", applicant_email: "", company_name: "", application_type: "", description: ""}
 
 export default function ApplicationForm() {
     const { id } = useParams();
@@ -17,7 +17,7 @@ export default function ApplicationForm() {
             api.get(id).then(app => setForm({
                 applicant_name: app.applicant_name,
                 applicant_email: app.applicant_email,
-                company_email: app.company_email,
+                company_name: app.company_name,
                 application_type: app.application_type,
                 description: app.description,
             }))
@@ -61,7 +61,12 @@ export default function ApplicationForm() {
                 <input name="company_name" value={form.company_name} onChange={handleChange} className={inputClass}/>
             </label>
             <label>Application Type
-                <input name="application_type" value={form.application_type} onChange={handleChange} className={inputClass}/>
+                <select name="application_type" value={form.application_type} onChange={handleChange} className={inputClass}>
+                    <option value="">-- Select type --</option>
+                    {TYPES.map(t => (
+                        <option key={t} value={t}>{t.replace(/_/g, " ")}</option>
+                    ))}
+                </select>
             </label>
             <label>Description
                 <textarea name="description" value={form.description} onChange={handleChange} rows={4} className={inputClass}/>
