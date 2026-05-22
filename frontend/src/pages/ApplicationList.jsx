@@ -9,6 +9,15 @@ export default function ApplicationList() {
 
     const TH = "border px-3 py-2";
 
+    const STATUS_COLORS = {
+        draft: "bg-gray-100 text-gray-700",
+        submitted: "bg-blue-100 text-blue-700",
+        under_review: "bg-yellow-100 text-yellow-800",
+        need_more_info: "bg-orange-100 text-orange-800",
+        approved: "bg-green-100 text-green-700",
+        rejected: "bg-red-100 text-red-700",
+    }
+
     useEffect(() => {
         api.list().then(setApps).catch(e => setError(e.message))
     }, [])
@@ -58,7 +67,11 @@ export default function ApplicationList() {
                                 <td className={TH}>{app.applicant_name}</td>
                                 <td className={TH}>{app.company_name}</td>
                                 <td className={TH}>{app.application_type}</td>
-                                <td className={TH}>{app.status}</td>
+                                <td className={TH}>
+                                    <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${STATUS_COLORS[app.status]}`}>
+                                        {app.status.replace(/_/g, " ")}
+                                    </span>
+                                </td>
                                 <td className={TH}>{new Date(app.created_at).toLocaleString()}</td>
                             </tr>
                         ))}
