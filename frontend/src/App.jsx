@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import ApplicationList from "./pages/ApplicationList";
 import ApplicationForm from "./pages/ApplicationForm";
+import ApplicationDetail from "./pages/ApplicationDetail";
 
 export default function App() {
   return(
@@ -8,6 +9,7 @@ export default function App() {
       <Routes>
         <Route  path="/" element={<ApplicationList />}/>
         <Route path="/applications/new" element={<ApplicationForm/>}/>
+        <Route path="/applications/:id" element={<ApplicationDetail/>}/>
       </Routes>
     </BrowserRouter>
   )
