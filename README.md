@@ -5,6 +5,16 @@
 
 A small full-stack application workflow tracker built with Django (Django Ninja) and React (Vite + Tailwind CSS).
 
+
+## Screenshots
+
+![List](assets/list.png)
+![New Application](assets/New.png)
+![Submitted Application](assets/submitted.png)
+![Record Decision](assets/decision.png)
+![Approved](assets/approved.png)
+
+
 ---
 
 ## Tech Stack
@@ -52,7 +62,7 @@ cd backend/TrendPro
 
 # 2. Create and activate a virtual environment
 python -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
+source venv/bin/activate   
 
 # 3. Install dependencies
 pip install -r requirements.txt
