@@ -10,6 +10,7 @@ export default function App() {
         <Route  path="/" element={<ApplicationList />}/>
         <Route path="/applications/new" element={<ApplicationForm/>}/>
         <Route path="/applications/:id" element={<ApplicationDetail/>}/>
+        <Route path="/applications/:id/edit" element={<ApplicationForm />}/>
       </Routes>
     </BrowserRouter>
   )

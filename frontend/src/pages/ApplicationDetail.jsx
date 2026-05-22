@@ -1,16 +1,18 @@
 import { useEffect, useState} from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '../api/applications';
+import ReviewerDecisionModal from '../components/ReviewerDecisionModal';
 
 const ApplicationDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [ app, setApp] = useState(null);
     const [ error, setError] = useState("");
+    const [ showModal, setShowModal ] = useState(false);
 
     useEffect(() => {
         api.get(id).then(setApp).catch(e => setError(e.message))
-    }, [id])
+    }, [id]);
 
     const action = async (fn) => {
     try { setApp(await fn()) }
@@ -59,6 +61,15 @@ const ApplicationDetail = () => {
         <button onClick={() => setShowModal(true)} className="bg-green-600 text-white px-3 py-1.5 rounded text-sm">Record Decision</button>}
     </div>
 
+    {showModal && (
+        <ReviewerDecisionModal
+            onClose={() => setShowModal(false)}
+            onSubmit={async (payload) => {
+                await action(() => api.decision(id, payload))
+                setShowModal(false)
+            }}
+        />
+    )}
     </div>
   )
 }
