@@ -41,10 +41,11 @@ export default function ApplicationForm() {
         }
     }
 
-    const inputClass = "w-full border border-gray-300 rounded px-2 py-1.5 text-sm mt-1"
+    const inputClass = "w-full border border-gray-300 rounded px-2 py-1.5 text-sm mt-1 mb-3"
 
     return (
-        <div className="p-6 max-w-lg">
+        <div className="min-h-screen bg-gray-50 flex items-start justify-center py-10">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 w-full max-w-lg">
             <button onClick={() => navigate(-1)} className="text-sm text-blue-600 mb-4 block">Back</button>
             <h1 className="text-xl font-semibold mb-4">{isEdit ? "Edit Application" : "New Application"}</h1>
 
@@ -74,6 +75,7 @@ export default function ApplicationForm() {
             <div className="flex gap-2 pt-2">
                 <button onClick={handleSubmit} className="bg-blue-600 text-white px-3 py-1.5 rounded text-sm">Save Draft</button>
                 <button onClick={() => navigate(-1)} className="border px-3 py-1.5 rounded text-sm">Cancel</button>
+            </div>
             </div>
             </div>
         </div>

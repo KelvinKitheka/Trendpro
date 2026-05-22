@@ -31,7 +31,7 @@ export default function ApplicationList() {
             <table className="w-full text-sm border-gray-200 border-collapse">
                 <thead className="bg-gray-100 text-left">
                     <tr>
-                        <th className={TH}>Tracking</th>
+                        <th className={TH}>Tracking Number</th>
                         <th className={TH}>Applicant</th>
                         <th className={TH}>Company</th>
                         <th className={TH}>Type</th>
